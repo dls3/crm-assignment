@@ -70,8 +70,12 @@ class CRM
   end
 
   def delete_contact
+    print "What's the first name of the contact you would like to delete?"
+    value_delete = gets.chomp
+    contact_to_delete = Contact.find_by("first_name", value_delete)
+
     print 'Deleting contact...'
-    Contact.delete
+    contact_to_delete.delete
   end
 
   def display_all_contacts
