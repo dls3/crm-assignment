@@ -2,8 +2,12 @@ require_relative 'contact.rb'
 
 class CRM
 
-  def initialize
+  # a_crm_app = CRM.new
+  # a_crm_app.main_menu
 
+  def initialize(name)
+    @name = name
+    puts "This CRM has the name " + name
   end
 
   def main_menu
@@ -26,37 +30,60 @@ class CRM
 
   def call_option(user_selected)
     case user_selected
-    when 1 then add_new_contact
-    when 2 then modify_existing_contact
-    when 3 then delete_contact
-    when 4 then display_all_contacts
-    when 5 then search_by_attribute
-    when 6 then   
-    # Finish off the rest for 3 through 6
-    # To be clear, the methods add_new_contact and modify_existing_contact
-    # haven't been implemented yet
+      when 1 then add_new_contact
+      when 2 then modify_existing_contact
+      when 3 then delete_contact
+      when 4 then display_all_contacts
+      when 5 then search_by_attribute
+      when 6 then exit
     end
   end
 
   def add_new_contact
+    print 'Enter First Name: '
+    first_name = gets.chomp
 
+    print 'Enter Last Name: '
+    last_name = gets.chomp
+
+    print 'Enter Email Address: '
+    email = gets.chomp
+
+    print 'Enter a Note: '
+    note = gets.chomp
+
+    Contact.create(first_name, last_name, email, note)
   end
 
-  def modify_existing_contact
 
+  def modify_existing_contact
+    print 'Enter the attribute you would like to modify: '
+    attritube = gets.chomp
+
+    print 'Enter the new value for that attribute: '
+    value = gets.chomp
+
+    Contact.update(attribute, value)
   end
 
   def delete_contact
-
+    print 'Deleting contact...'
+    Contact.delete
   end
 
   def display_all_contacts
-
+    print 'Deleting all contacts...'
+    Contact.delete_all
   end
 
   def search_by_attribute
+    print 'Enter the attribute you would like to search for: '
+    attritube = gets.chomp
 
+    print 'Enter the new value for that attribute: '
+    value = gets.chomp
+
+    Contact.find_by(attribute, value)
   end
-
 
 end
