@@ -2,9 +2,6 @@ require_relative 'contact.rb'
 
 class CRM
 
-  # a_crm_app = CRM.new
-  # a_crm_app.main_menu
-
   def initialize(name)
     @name = name
     puts "This CRM has the name " + name
@@ -87,3 +84,6 @@ class CRM
   end
 
 end
+
+a_crm_app = CRM.new("NewCRM")
+a_crm_app.main_menu
