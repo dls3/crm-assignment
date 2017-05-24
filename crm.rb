@@ -89,7 +89,7 @@ class CRM
     print 'Enter the attribute you would like to search for: '
     attritube = gets.chomp
 
-    print 'Enter the new value for that attribute: '
+    print 'Enter the value for that attribute: '
     value = gets.chomp
 
     Contact.find_by(attribute, value)
