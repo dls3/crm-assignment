@@ -80,7 +80,9 @@ class CRM
 
   def display_all_contacts
     print 'Displaying all contacts...'
-    puts Contact.all
+    Contact.all.each do |contact|
+      puts "#{contact.first_name} #{contact.last_name} #{contact.email} #{contact.notes}"
+    end
   end
 
   def search_by_attribute
