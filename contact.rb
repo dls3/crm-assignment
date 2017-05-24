@@ -46,6 +46,8 @@ class Contact
   # 1. which of the contact's attributes you want to update
   # 2. the new value for that attribute
   # and then make the appropriate change to the contact
+
+  ##how to use send method????
   def update(attribute, value)
     if attribute == "first_name"
       self.first_name = value
@@ -57,7 +59,6 @@ class Contact
       self.notes = value
     end
   end
-
 
   # This method should work similarly to the find method above
   # but it should allow you to search for a contact using attributes other than id
@@ -96,10 +97,9 @@ class Contact
     end
   end
 
-
   # This method should delete all of the contacts
   def self.delete_all
-
+    @@contacts.clear
   end
 
   def full_name
