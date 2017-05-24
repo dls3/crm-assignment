@@ -4,7 +4,7 @@ class CRM
 
   def initialize(name)
     @name = name
-    puts "This CRM has the name " + name
+    puts "This CRM has the name " + @name
   end
 
   def main_menu
@@ -47,20 +47,26 @@ class CRM
     email = gets.chomp
 
     print 'Enter a Note: '
-    note = gets.chomp
+    notes = gets.chomp
 
-    Contact.create(first_name, last_name, email, note)
+    Contact.create(first_name, last_name, email, notes = "N/A")
   end
 
 
   def modify_existing_contact
+
+    print "What's the first name of the contact you would like to modify?"
+    value_find = gets.chomp
+
+    contact_to_modify = Contact.find_by("first_name", value_find)
+
     print 'Enter the attribute you would like to modify: '
-    attritube = gets.chomp
+    attribute = gets.chomp
 
     print 'Enter the new value for that attribute: '
     value = gets.chomp
 
-    Contact.update(attribute, value)
+    contact_to_modify.update(attribute, value)
   end
 
   def delete_contact
@@ -69,8 +75,8 @@ class CRM
   end
 
   def display_all_contacts
-    print 'Deleting all contacts...'
-    Contact.delete_all
+    print 'Displaying all contacts...'
+    puts Contact.all
   end
 
   def search_by_attribute
