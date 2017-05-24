@@ -36,10 +36,10 @@ class Contact
     unique_contact = nil
     @@contacts.each do |contact|
       if id == contact.id
-        unique_contact = contact
+        return unique_contact = contact
       end
     end
-    unique_contact
+    return nil
   end
 
   # This method should allow you to specify
@@ -54,25 +54,39 @@ class Contact
   # but it should allow you to search for a contact using attributes other than id
   # by specifying both the name of the attribute and the value
   # eg. searching for 'first_name', 'Betty' should return the first contact named Betty
-  ############
+
   def self.find_by(attribute, value)
+    if attribute == "first_name"
       @@contacts.each do |contact|
-        if contact == @first_name || contact ==  @last_name || contact == @email
+        if value == contact.first_name
           return contact
         end
       end
-    end
-############
-  def self.find(id)
-    unique_contact = nil
-    @@contacts.each do |contact|
-      if id == contact.id
-        unique_contact = contact
+      nil
+    elsif attribute == "last_name"
+      @@contacts.each do |contact|
+        if value == contact.last_name
+          return contact
+        end
       end
+      nil
+    elsif attribute == "email"
+      @@contacts.each do |contact|
+        if value == contact.email
+          return contact
+        end
+      end
+      nil
+    else attribute == "notes"
+      @@contacts.each do |contact|
+        if value == contact.notes
+          return contact
+        end
+      end
+      nil
     end
-    unique_contact
   end
-############
+
 
 
   # This method should delete all of the contacts
