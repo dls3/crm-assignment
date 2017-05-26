@@ -1,17 +1,17 @@
 class Contact
 
   attr_reader :id
-  attr_accessor :first_name, :last_name, :email, :notes
+  attr_accessor :first_name, :last_name, :email, :note
 
   @@contacts = []
   @@next_id = 1000
 
   # This method should initialize the contact's attributes
-  def initialize(first_name, last_name, email, notes = "N/A")
+  def initialize(first_name, last_name, email, note = "N/A")
     @first_name = first_name
     @last_name = last_name
     @email = email
-    @notes = notes
+    @note = note
 
     @id = @@next_id    # start at @@next_id (1000)
     @@next_id += 1    #increase the id number by one everytime a contact initialized
@@ -19,8 +19,8 @@ class Contact
 
   # This method should call the initializer,
   # store the newly created contact, and then return it
-  def self.create(first_name, last_name, email, notes = "N/A")
-    new_contact = Contact.new(first_name, last_name, email, notes = "N/A")
+  def self.create(first_name, last_name, email, note)   # = "N/A")
+    new_contact = Contact.new(first_name, last_name, email, note)  # = "N/A")
     @@contacts << new_contact
     new_contact
   end
@@ -55,8 +55,8 @@ class Contact
       self.last_name = value
     elsif attribute == "email"
       self.email = value
-    elsif attribute == "notes"
-      self.notes = value
+    elsif attribute == "note"
+      self.note = value
     end
   end
 
@@ -87,9 +87,9 @@ class Contact
         end
       end
       nil
-    else attribute == "notes"
+    else attribute == "note"
       @@contacts.each do |contact|
-        if value == contact.notes
+        if value == contact.note
           return contact
         end
       end
@@ -109,7 +109,7 @@ class Contact
   # This method should delete the contact
   # HINT: Check the Array class docs for built-in methods that might be useful here
   def delete
-    @@contact.delete(self)
+    @@contacts.delete(self)
   end
 
   # Feel free to add other methods here, if you need them.
