@@ -49,7 +49,13 @@ class CRM
     print 'Enter a Note: '
     notes = gets.chomp
 
-    Contact.create(first_name, last_name, email, notes = "N/A")
+    contact = Contact.create(
+      first_name: first_name,
+      last_name:  last_name,
+      email:      email,
+      notes:       notes
+    )
+
   end
 
 
@@ -104,3 +110,5 @@ a_crm_app.main_menu
 at_exit do
   ActiveRecord::Base.connection.close
 end
+
+#INSERT INTO crm(first_name, last_name, email, notes) VALUES("Doug", "S", "doug@gmail.com", "N/A");
