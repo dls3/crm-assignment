@@ -1,4 +1,5 @@
 require_relative 'contact.rb'
+require 'pry'
 
 class CRM
 
@@ -53,7 +54,7 @@ class CRM
       first_name: first_name,
       last_name:  last_name,
       email:      email,
-      notes:       notes
+      note:       note
     )
 
   end
@@ -64,7 +65,7 @@ class CRM
     print "What's the first name of the contact you would like to modify?"
     value_find = gets.chomp
 
-    contact_to_modify = Contact.find_by("first_name", value_find)
+    contact_to_modify = Contact.find_by(first_name: value_find)
 
     print 'Enter the attribute you would like to modify: '
     attribute = gets.chomp
@@ -72,24 +73,13 @@ class CRM
     print 'Enter the new value for that attribute: '
     value = gets.chomp
 
-    contact_to_modify.update(attribute, value)
-    #save
-
-    # def update(attributes)
-    #   # The following transaction covers any possible database side-effects of the
-    #   # attributes assignment. For example, setting the IDs of a child collection.
-    #   with_transaction_returning_status do
-    #     assign_attributes(attributes)
-    #     save
-    #   end
-    # end
-
+    contact_to_modify.update(attribute => value)
   end
 
   def delete_contact
     print "What's the first name of the contact you would like to delete?"
     value_delete = gets.chomp
-    contact_to_delete = Contact.find_by("first_name", value_delete)
+    contact_to_delete = Contact.find_by(first_name => value_delete)
 
     print 'Deleting contact...'
     contact_to_delete.delete
@@ -109,7 +99,7 @@ class CRM
     print 'Enter the value for that attribute: '
     value = gets.chomp
 
-    Contact.find_by(attribute, value)
+    Contact.find_by(attribute => value)
   end
 
 end
@@ -121,5 +111,3 @@ a_crm_app.main_menu
 at_exit do
   ActiveRecord::Base.connection.close
 end
-
-#INSERT INTO crm(first_name, last_name, email, notes) VALUES("Doug", "S", "doug@gmail.com", "N/A");
